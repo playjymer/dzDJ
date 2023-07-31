@@ -20,3 +20,23 @@ class Advertisement(models.Model):
 
     def updated_today(self):
         return self.updated_at.date() == timezone.now().date()    
+    
+class Advertisement(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'advertisements'
+
+
+
+class Advertisement(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Advertisement(id={self.pk}, title={self.title}, price={self.price})"
