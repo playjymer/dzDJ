@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-
 class AppOnlineShopConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'app_online_shop'
+    verbose_name = 'Объявления'  # Задаем новое отображаемое имя для раздела с объявлениями

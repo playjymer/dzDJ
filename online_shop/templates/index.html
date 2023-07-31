@@ -6,26 +6,21 @@
 {% block content %}
 <ul class="nav nav-pills sticky-top bg-white nav-fill">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">
+    <a class="nav-link active" aria-current="page" href="{index.html}">
       <span style="font-weight: bold;">Главная</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'top-sellers' %}">
+    <a class="nav-link" href="{top_sellers.html}">
       <span style="font-weight: bold;">Топ продавцов</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'advertisement-post' %}">
+    <a class="nav-link" href="{place_advertisement.html}">
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
 </ul>
-<div
-  id="carouselExampleControls"
-  class="carousel slide bg-primary"
-  data-bs-ride="carousel"
->
-  <!-- Rest of the content -->
+<div id="carouselExampleControls" class="carousel slide bg-primary" data-bs-ride="carousel">
 </div>
 {% endblock %}
