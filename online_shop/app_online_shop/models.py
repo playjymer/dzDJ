@@ -1,42 +1,26 @@
 from django.db import models
-from django.utils import timezone
 
 # Create your models here.
 
+# создаем класс с описание структуры будущей таблицы (наследуемся от класса Model)
 class OnlineShop(models.Model):
+    # создаем заголовок объявления
+    # CharField - класс, обозначающий символьное поле (набор символов), подходит для небольших текстов
     title = models.CharField('Заголовок', max_length=128)
+    # создаем описание объявления
+    # TextField - класс, обозначающий строковое поле больших размеров
     description = models.TextField('Описание')
+    # создаем цену
+    # Decimal - дробное число с фиксированной точностью (похоже на float в Python)
+    # max_digits - максимальное кол-во цифр в числе
+    # decival_places - кол-во знаком после запятой
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
-    auction = models.BooleanField('Торг', help_text='Отметьте уместен ли торг?')
+    # создаем возможность торгроваться
+    # BooleanField - логический тип данных (истина или ложь)
+    auction = models.BooleanField('Торг', help_text='Отметьте, уместен ли торг')
+    # создаем дату размещения объявления
+    # auto_now_add=True - сразу получаем дату в момент создания объявления
     created_time = models.DateTimeField(auto_now_add=True)
+    # создаем дату обновления объявления
+    # auto_now=True - получаем дату в момент обновления объявления
     update_time = models.DateTimeField(auto_now=True)
-
-class Advertisement(models.Model):
-    # Ваши поля модели объявления, например:
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def updated_today(self):
-        return self.updated_at.date() == timezone.now().date()    
-    
-class Advertisement(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'advertisements'
-
-
-
-class Advertisement(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"Advertisement(id={self.pk}, title={self.title}, price={self.price})"
