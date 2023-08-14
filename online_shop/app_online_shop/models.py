@@ -1,7 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 # Create your models here.
-
+User = get_user_model()
 # создаем класс с описание структуры будущей таблицы (наследуемся от класса Model)
 class OnlineShop(models.Model):
     # создаем заголовок объявления
@@ -24,3 +25,13 @@ class OnlineShop(models.Model):
     # создаем дату обновления объявления
     # auto_now=True - получаем дату в момент обновления объявления
     update_time = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE)
+
+    image = models.ImageField('Изображения', upload_to='online_shop/')
+    def get_thumbnail_url(self):
+        if self.image:
+            # Здесь вы должны определить логику получения URL уменьшенной копии картинки
+            # Например, используя Python Imaging Library (PIL) для создания уменьшенной копии
+            return self.image.url  # Вернуть URL уменьшенной копии
+        else:
+            return ''  # Если нет картинки, вернуть пустую строку
